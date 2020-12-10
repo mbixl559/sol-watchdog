@@ -70,7 +70,9 @@ def startProcess():
         print("starting watchdog")
         with open("watchdog_log.log", "a") as logfile:
             # subprocess.Popen(["python3", "filewatcher.py", watchPath]) #, stdout=logfile, stderr=logfile)
-            subprocess.Popen(["bin/filewatcher.exe", watchPath])
+            filename = "filewatcher.exe" if sys.platform == "win32" else "filewatcher"
+            watcherPath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "bin", filename)
+            subprocess.Popen([watcherPath, watchPath])
     else:
         print("watchdog is already running")
     
