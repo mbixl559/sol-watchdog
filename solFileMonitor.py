@@ -73,7 +73,7 @@ def startProcess():
             # subprocess.Popen(["python3", "filewatcher.py", watchPath]) #, stdout=logfile, stderr=logfile)
             filename = "filewatcher.exe" if sys.platform == "win32" else "filewatcher"
             watcherPath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "bin", filename)
-            if sys.argv[0] == ".\solFileMonitor.py":
+            if sys.argv[0].endswith("solFileMonitor.py"):
                 subprocess.Popen(["python3", "filewatcher.py"])
             else:
                 subprocess.Popen([watcherPath, watchPath])
