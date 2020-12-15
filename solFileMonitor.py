@@ -68,11 +68,15 @@ def startProcess():
              
         watchPath = getWatchDir()
         print("starting watchdog")
+        print(sys.argv[0])
         with open("watchdog_log.log", "a") as logfile:
             # subprocess.Popen(["python3", "filewatcher.py", watchPath]) #, stdout=logfile, stderr=logfile)
             filename = "filewatcher.exe" if sys.platform == "win32" else "filewatcher"
             watcherPath = os.path.join(os.path.dirname(os.path.realpath(__file__)), "bin", filename)
-            subprocess.Popen([watcherPath, watchPath])
+            if sys.argv[0] == ".\solFileMonitor.py":
+                subprocess.Popen(["python3", "filewatcher.py"])
+            else:
+                subprocess.Popen([watcherPath, watchPath])
     else:
         print("watchdog is already running")
     
