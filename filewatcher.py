@@ -15,19 +15,19 @@ import boto3
 from botocore.exceptions import ClientError
 
 def onCreated(event):
-    print(f"{event.src_path} created")
+    print("{0} created".format(event.src_path))
     sendEmail("{0} created".format(event.src_path))
 
 def onDeleted(event):
-    print(f"{event.src_path} deleted")
+    print("{0} deleted".format(event.src_path))
     sendEmail("{0} deleted".format(event.src_path))
 
 def onModified(event):
-    print(f"{event.src_path} modified")
+    print("{0} modified".format(event.src_path))
     sendEmail("{0} modified".format(event.src_path))
 
 def onMoved(event):
-    print(f"{event.src_path} moved to {event.dest_path}") 
+    print("{0} moved to {1}".format(event.src_path, event.dest_path)) 
     sendEmail("{0} moved to {1}".format(event.src_path, event.dest_path))
     
 def sendEmail(message):
